@@ -1,0 +1,3 @@
+SSH_SERVER = ''
+SSH_USERNAME = ''
+SSH_PASSWORD = ''
