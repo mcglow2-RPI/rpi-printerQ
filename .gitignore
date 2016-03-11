@@ -1,4 +1,14 @@
+# Garbage from text editors or Python
 *.swp
+*.swo
 *.pyc
+*.env
 
-__pycache__
+__pycache__/
+env/
+env3/
+node_modules/
+queue_app/static/json/printers_data.json
+
+config.py
+

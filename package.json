@@ -1,0 +1,28 @@
+{
+  "name": "rpi-printerq",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://albshin@github.com/albshin/rpi-printerQ.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albshin/rpi-printerQ/issues"
+  },
+  "homepage": "https://github.com/albshin/rpi-printerQ#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.1",
+    "react": "^0.14.7",
+    "react-bootstrap": "^0.28.3",
+    "react-dom": "^0.14.7"
+  }
+}

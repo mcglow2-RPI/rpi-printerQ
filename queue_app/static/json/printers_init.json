@@ -1,0 +1,91 @@
+{
+    "last_updated": "",
+    "printers":
+    [
+        {
+            "name": "vc6350let",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vc6350ovr",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vc7760cb",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vc7760cbg",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vc7760cz4",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vclw",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcblw",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcnolw",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcpalw",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcpap3",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcph3let",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcp7100",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcp7100g",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcpltcf",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcsoutlw",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcsoutb",
+            "state": 0,
+            "queue": []
+        },
+        {
+            "name": "vcsoutp3",
+            "state": 0,
+            "queue": []
+        }
+    ]
+}
