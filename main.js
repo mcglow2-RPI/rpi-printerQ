@@ -9,7 +9,6 @@ var NavbarBrand = require('react-bootstrap/lib/NavbarBrand');
 var NavbarHeader = require('react-bootstrap/lib/NavbarHeader');
 var NavbarToggle = require('react-bootstrap/lib/NavbarToggle');
 var NavbarBrand = require('react-bootstrap/lib/NavbarBrand');
-var NavDropdown = require('react-bootstrap/lib/NavDropdown');
 var NavItem = require('react-bootstrap/lib/NavItem');
 var MenuItem = require('react-bootstrap/lib/MenuItem');
 var Panel = require('react-bootstrap/lib/Panel');
@@ -17,6 +16,7 @@ var Table = require('react-bootstrap/lib/Table');
 var Grid = require('react-bootstrap/lib/Grid');
 var Row = require('react-bootstrap/lib/Row');
 var Col = require('react-bootstrap/lib/Col');
+var Glyphicon = require('react-bootstrap/lib/Glyphicon');
 
 var PrintJob = React.createClass({
     render: function() {
@@ -47,11 +47,17 @@ var PrintJob = React.createClass({
 });
 
 var PrinterPanel = React.createClass({
+    getDefaultProps: function() {
+        return {
+            data: []
+        };
+    },
     render: function() {
         var printerNodes = this.props.data.map(function(printer) {
+            var title = ( <h3>{printer.name}</h3> );
             return (
                 <Col md={6}>
-                    <Panel header={printer.name} key={printer.name}>
+                    <Panel header={title} key={printer.name}>
                         {function() { 
                             if (printer.queue.length != 0) {
                                 return <PrintJob queue={printer.queue} key={printer.queue.filename} />
@@ -79,6 +85,9 @@ var PrinterPage = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
+                data.printers.sort(function (x, y) {
+                    return y.queue.length - x.queue.length;
+                });
                 this.setState({data: data});
             }.bind(this)
         });
@@ -106,9 +115,7 @@ var PrinterPage = React.createClass({
                 </Navbar>
                 <Grid>
                     <Row>
-                            {/* Loading AJAX asynchronously, have to see if data.printers is defined first
-                                before rendering */}
-                            {this.state.data.printers && <PrinterPanel data={this.state.data.printers} />}
+                        <PrinterPanel data={this.state.data.printers} />
                     </Row>
                 </Grid>
             </div>
