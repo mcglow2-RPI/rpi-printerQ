@@ -14,24 +14,30 @@ def update_printer():
         stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
         output = stdout.readlines()
         #print(output)
+ 
+        # State Guide:
+        # 1 - No Entries
+        # 2 - Operating
+        # 3 - Busy/Warning
+        # 4 - Fatal Errors
 
         if len(output) == 1:
             if 'no entries' in output[0].lower():
                 printer['state'] = 1
             elif 'printer not found' in output[0].lower():
-                printer['state'] = 2
+                printer['state'] = 4
 
         elif len(output) >= 1:
             if 'status: busy' in output[0].lower():
                 printer['state'] = 3
             elif 'printerror: check printer' in output[0].lower():
-                printer['state'] = 4
+                printer['state'] = 3
+            elif 'problems finding printer' in output[0].lower():
+                printer['state'] = 3
             elif 'is down:' in output[0].lower():
                 printer['state'] = 4
-            elif 'problems finding printer' in output[0].lower():
-                printer['state'] = 4
             else:
-                printer['state'] = 3
+                printer['state'] = 2
             parse_output(printer, output)
 
         else:

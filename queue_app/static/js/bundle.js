@@ -46,7 +46,7 @@ var PrintJob = React.createClass({
         });
         return React.createElement(
             Table,
-            { striped: true },
+            { fill: true, striped: true },
             React.createElement(
                 'thead',
                 null,
@@ -89,20 +89,44 @@ var PrinterPanel = React.createClass({
     },
     render: function () {
         var printerNodes = this.props.data.map(function (printer) {
+            var style = function () {
+                if (printer.state === 1) {
+                    return "success";
+                } else if (printer.state === 2) {
+                    return "info";
+                } else if (printer.state === 3) {
+                    return "warning";
+                } else if (printer.state === 4) {
+                    return "danger";
+                }
+            }.call(this);
+            var glyphState = function () {
+                if (printer.state === 1) {
+                    return "ok-sign";
+                } else if (printer.state === 2) {
+                    return "file";
+                } else if (printer.state === 3) {
+                    return "exclamation-sign";
+                } else if (printer.state === 4) {
+                    return "remove-sign";
+                }
+            }.call(this);
             var title = React.createElement(
                 'h3',
                 null,
-                printer.name
+                printer.name,
+                React.createElement(Glyphicon, { className: 'pull-right', glyph: glyphState })
             );
+
             return React.createElement(
                 Col,
                 { md: 6 },
                 React.createElement(
                     Panel,
-                    { header: title, key: printer.name },
+                    { header: title, bsStyle: style, key: printer.name },
                     function () {
                         if (printer.queue.length != 0) {
-                            return React.createElement(PrintJob, { queue: printer.queue, key: printer.queue.filename });
+                            return React.createElement(PrintJob, { fill: true, queue: printer.queue, key: printer.queue.filename });
                         } else {
                             return React.createElement(
                                 'p',
@@ -163,8 +187,7 @@ var PrinterPage = React.createClass({
                             { href: '#' },
                             'RPI PrinterQ'
                         )
-                    ),
-                    React.createElement(NavbarToggle, null)
+                    )
                 ),
                 React.createElement(
                     Nav,

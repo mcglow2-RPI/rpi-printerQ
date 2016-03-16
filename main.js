@@ -30,7 +30,7 @@ var PrintJob = React.createClass({
             );
         });
         return (
-        <Table striped>
+        <Table fill striped>
             <thead>
                 <tr>
                     <th>#</th>
@@ -54,13 +54,42 @@ var PrinterPanel = React.createClass({
     },
     render: function() {
         var printerNodes = this.props.data.map(function(printer) {
-            var title = ( <h3>{printer.name}</h3> );
+            var style = (function() {
+                if (printer.state === 1) {
+                    return "success"
+                }
+                else if (printer.state === 2) {
+                    return "info"
+                }
+                else if (printer.state === 3) {
+                    return "warning"
+                }
+                else if (printer.state === 4) {
+                    return "danger"
+                }
+            }).call(this);
+            var glyphState = (function() {
+                if (printer.state === 1) {
+                    return "ok-sign"
+                }
+                else if (printer.state === 2) {
+                    return "file"
+                }
+                else if (printer.state === 3) {
+                    return "exclamation-sign"
+                }
+                else if (printer.state === 4) {
+                    return "remove-sign"
+                }
+            }).call(this);
+            var title = ( <h3>{printer.name}<Glyphicon className="pull-right" glyph={glyphState} /></h3> );
+                
             return (
                 <Col md={6}>
-                    <Panel header={title} key={printer.name}>
+                    <Panel header={title} bsStyle={style} key={printer.name}>
                         {function() { 
                             if (printer.queue.length != 0) {
-                                return <PrintJob queue={printer.queue} key={printer.queue.filename} />
+                                return <PrintJob fill queue={printer.queue} key={printer.queue.filename} />
                             }
                             else {
                                 return <p>Queue is currently empty.</p>
@@ -107,7 +136,6 @@ var PrinterPage = React.createClass({
                         <NavbarBrand>
                             <a href="#">RPI PrinterQ</a>
                         </NavbarBrand>
-                    <NavbarToggle />
                 </NavbarHeader>
                 <Nav pullRight>
                     <NavItem>Last updated: {this.state.data.last_updated}</NavItem>
