@@ -4,22 +4,26 @@ import time
 from . import app
 
 def update_printer():
+    # Initialize Paramiko, get information from config file
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(app.config['SSH_SERVER'], username = app.config['SSH_USERNAME'], password = app.config['SSH_PASSWORD'])
+    
+    # Get the initial printer data from "printers_init.json"
     with open('queue_app/static/json/printers_init.json', 'r') as json_printer:
         printer_data = json.load(json_printer)
     
     for printer in printer_data['printers']:
         stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
         output = stdout.readlines()
-        #print(output)
  
         # State Guide:
         # 1 - No Entries
         # 2 - Operating
         # 3 - Warning
         # 4 - Fatal Errors
+        # Honestly this is just a handful of output that the printer can give you.
+        # We just target the most common output.
 
         if len(output) == 1:
             if 'no entries' in output[0].lower():
@@ -49,11 +53,14 @@ def update_printer():
             print("Unexpected condition!")
             print(output)
 
+    # Command to clean some cache file that appear after running "lpq"
     ssh.exec_command("lpq-pqtest --kdest")  
     ssh.close()
 
+    # Update the timestamp
     printer_data['last_updated'] = time.strftime("%a, %b %d, %I:%M %p")
 
+    # Dump all the data into a new JSON file named "printers_data.json"
     with open('queue_app/static/json/printers_data.json', 'w') as write_printer:
         json.dump(printer_data, write_printer, indent=4, sort_keys=True)
 
