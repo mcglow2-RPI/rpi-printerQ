@@ -23,10 +23,10 @@ var PrintJob = React.createClass({
     displayName: 'PrintJob',
 
     render: function () {
-        var printerJobs = this.props.queue.map(function (job) {
+        var printerJobs = this.props.queue.map(function (job, i) {
             return React.createElement(
                 'tr',
-                null,
+                { key: i },
                 React.createElement(
                     'td',
                     null,
@@ -120,13 +120,13 @@ var PrinterPanel = React.createClass({
 
             return React.createElement(
                 Col,
-                { md: 6 },
+                { md: 4, key: printer.name },
                 React.createElement(
                     Panel,
-                    { header: title, bsStyle: style, key: printer.name },
+                    { header: title, footer: printer.error, bsStyle: style },
                     function () {
                         if (printer.queue.length != 0) {
-                            return React.createElement(PrintJob, { fill: true, queue: printer.queue, key: printer.queue.filename });
+                            return React.createElement(PrintJob, { fill: true, queue: printer.queue });
                         } else {
                             return React.createElement(
                                 'p',
@@ -175,7 +175,7 @@ var PrinterPage = React.createClass({
             { className: 'mainContent' },
             React.createElement(
                 Navbar,
-                null,
+                { fluid: true },
                 React.createElement(
                     NavbarHeader,
                     null,
@@ -202,7 +202,7 @@ var PrinterPage = React.createClass({
             ),
             React.createElement(
                 Grid,
-                null,
+                { fluid: true },
                 React.createElement(
                     Row,
                     null,

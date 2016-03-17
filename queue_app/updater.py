@@ -18,7 +18,7 @@ def update_printer():
         # State Guide:
         # 1 - No Entries
         # 2 - Operating
-        # 3 - Busy/Warning
+        # 3 - Warning
         # 4 - Fatal Errors
 
         if len(output) == 1:
@@ -26,22 +26,28 @@ def update_printer():
                 printer['state'] = 1
             elif 'printer not found' in output[0].lower():
                 printer['state'] = 4
+                printer['error'] = "The printer is currently not available."
 
         elif len(output) >= 1:
+            # Busy = it's printing
             if 'status: busy' in output[0].lower():
-                printer['state'] = 3
+                printer['state'] = 2
             elif 'printerror: check printer' in output[0].lower():
                 printer['state'] = 3
+                printer['error'] = "The printer is not printing."
             elif 'problems finding printer' in output[0].lower():
                 printer['state'] = 3
+                printer['error'] = "The printer is experiencing network problems."
             elif 'is down:' in output[0].lower():
                 printer['state'] = 4
+                printer['error'] = "The printer is down."
             else:
                 printer['state'] = 2
             parse_output(printer, output)
 
         else:
             print("Unexpected condition!")
+            print(output)
 
     ssh.exec_command("lpq-pqtest --kdest")  
     ssh.close()

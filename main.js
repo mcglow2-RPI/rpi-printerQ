@@ -20,9 +20,9 @@ var Glyphicon = require('react-bootstrap/lib/Glyphicon');
 
 var PrintJob = React.createClass({
     render: function() {
-        var printerJobs = this.props.queue.map(function(job) {
+        var printerJobs = this.props.queue.map(function(job, i) {
             return (
-                <tr>
+                <tr key={i}>
                     <td>{job.queue_pos}</td>
                     <td>{job.user_id}</td>
                     <td>{job.filename}</td>
@@ -85,11 +85,11 @@ var PrinterPanel = React.createClass({
             var title = ( <h3>{printer.name}<Glyphicon className="pull-right" glyph={glyphState} /></h3> );
                 
             return (
-                <Col md={6}>
-                    <Panel header={title} bsStyle={style} key={printer.name}>
+                <Col md={4} key={printer.name}>
+                    <Panel header={title} footer={printer.error} bsStyle={style}>
                         {function() { 
                             if (printer.queue.length != 0) {
-                                return <PrintJob fill queue={printer.queue} key={printer.queue.filename} />
+                                return <PrintJob fill queue={printer.queue} />
                             }
                             else {
                                 return <p>Queue is currently empty.</p>
@@ -131,7 +131,7 @@ var PrinterPage = React.createClass({
     render: function() {
         return (
             <div className="mainContent">
-                <Navbar>
+                <Navbar fluid>
                     <NavbarHeader>
                         <NavbarBrand>
                             <a href="#">RPI PrinterQ</a>
@@ -141,7 +141,7 @@ var PrinterPage = React.createClass({
                     <NavItem>Last updated: {this.state.data.last_updated}</NavItem>
                 </Nav>
                 </Navbar>
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <PrinterPanel data={this.state.data.printers} />
                     </Row>

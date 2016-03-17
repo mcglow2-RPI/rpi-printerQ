@@ -7,8 +7,8 @@ app.config.from_object('config')
 
 @app.before_first_request
 def init():
-    print("Initial printer update.")
     update_printer()
+    print("Setting up auto updater.")
     sched = BackgroundScheduler()
     sched.start()
     sched.add_job(update_printer, 'interval', minutes=1)
