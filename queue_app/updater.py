@@ -50,8 +50,8 @@ def update_printer():
             parse_output(printer, output)
 
         else:
-            print("Unexpected condition!")
-            print(output)
+            printer['state'] = 4
+            printer['error'] = "Printer did not respond."
 
     # Command to clean some cache file that appear after running "lpq"
     ssh.exec_command("lpq-pqtest --kdest")  

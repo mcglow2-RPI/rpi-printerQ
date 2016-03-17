@@ -33,9 +33,9 @@ var PrintJob = React.createClass({
         <Table fill striped>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Username</th>
-                    <th>Filename</th>
+                    <th className="table-queuepos">#</th>
+                    <th className="table-username">Username</th>
+                    <th className="table-filename">Filename</th>
                 </tr>
             </thead>
             <tbody> 

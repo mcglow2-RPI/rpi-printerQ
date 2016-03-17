@@ -1,6 +1,7 @@
 # Garbage from text editors or Python
 *.swp
 *.swo
+*.swn
 *.pyc
 *.env
 

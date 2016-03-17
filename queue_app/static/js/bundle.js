@@ -55,17 +55,17 @@ var PrintJob = React.createClass({
                     null,
                     React.createElement(
                         'th',
-                        null,
+                        { className: 'table-queuepos' },
                         '#'
                     ),
                     React.createElement(
                         'th',
-                        null,
+                        { className: 'table-username' },
                         'Username'
                     ),
                     React.createElement(
                         'th',
-                        null,
+                        { className: 'table-filename' },
                         'Filename'
                     )
                 )
