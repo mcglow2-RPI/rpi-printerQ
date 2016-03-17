@@ -8,23 +8,32 @@ A complete rewrite of TrevorNT's [RPI PrinterQueue-NG](https://github.com/Trevor
 * Data is stored in a single JSON file rather than a database
 
 ## Getting Started
-
 ### Requirements
 * Python 3.x
+* Flask
 
 ### Installation
 * **Recommended:** Setup a virtualenv.
 * Run `install -r requirements.txt`.
-* Setup your config file (see below).
+* [Setup your config file](https://github.com/albshin/rpi-printerQ#config-file).
 * Run `python app.py`.
 * Go to [http://localhost:5000/](http://localhost:5000/).
 
-### Config File
-Rename `config.def.py` to `config.py` and fill in the fields with the correct server (omitted to general public), your RCS username, and password.
-
+#### Config File
 **Example:**
 ```
 SSH_SERVER = 'this-server.edu'
 SSH_USERNAME = 'anon'
 SSH_PASSWORD = 'hunter2'
 ```
+
+## Development
+### Dependencies
+* Python 3.x
+* Flask
+* npm
+* reactjs
+* react-bootstrap
+* babelify
+* browserify
+* 
