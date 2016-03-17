@@ -134,11 +134,11 @@ var PrinterPage = React.createClass({
                 <Navbar fluid>
                     <NavbarHeader>
                         <NavbarBrand>
-                            <a href="#">RPI PrinterQ</a>
+                            <a href="#"><strong>RPI PrinterQ</strong></a>
                         </NavbarBrand>
                 </NavbarHeader>
                 <Nav pullRight>
-                    <NavItem>Last updated: {this.state.data.last_updated}</NavItem>
+                    <NavItem><strong>Last updated: {this.state.data.last_updated}</strong></NavItem>
                 </Nav>
                 </Navbar>
                 <Grid fluid>

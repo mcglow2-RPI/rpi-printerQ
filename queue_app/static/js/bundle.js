@@ -185,7 +185,11 @@ var PrinterPage = React.createClass({
                         React.createElement(
                             'a',
                             { href: '#' },
-                            'RPI PrinterQ'
+                            React.createElement(
+                                'strong',
+                                null,
+                                'RPI PrinterQ'
+                            )
                         )
                     )
                 ),
@@ -195,8 +199,12 @@ var PrinterPage = React.createClass({
                     React.createElement(
                         NavItem,
                         null,
-                        'Last updated: ',
-                        this.state.data.last_updated
+                        React.createElement(
+                            'strong',
+                            null,
+                            'Last updated: ',
+                            this.state.data.last_updated
+                        )
                     )
                 )
             ),

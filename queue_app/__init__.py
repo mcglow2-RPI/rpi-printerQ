@@ -11,7 +11,7 @@ def init():
     print("Setting up auto updater.")
     sched = BackgroundScheduler()
     sched.start()
-    sched.add_job(update_printer, 'interval', minutes=1)
+    sched.add_job(update_printer, 'cron', minute='*/1')
 
 @app.route('/')
 def index():
