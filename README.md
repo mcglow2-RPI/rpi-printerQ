@@ -14,7 +14,7 @@ A complete rewrite of TrevorNT's [RPI PrinterQueue-NG](https://github.com/Trevor
 
 ### Installation
 * **Recommended:** Setup a virtualenv.
-* Run `install -r requirements.txt`.
+* Run `pip install -r requirements.txt`.
 * [Setup your config file](https://github.com/albshin/rpi-printerQ#config-file).
 * Run `python app.py`.
 * Go to [http://localhost:5000/](http://localhost:5000/).
