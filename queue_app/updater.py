@@ -15,7 +15,7 @@ def update_printer():
     
     for printer in printer_data['printers']:
         # stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
-        proc = subprocess.Popen(["rlpq", "-N", "-H", app.config['SSH_SERVER'], "-P" + printer['name']], stdout=subprocess.PIPE).communicate()[0]
+        proc = subprocess.Popen(["rlpq", "-N", "-H", app.config['SERVER'], "-P" + printer['name']], stdout=subprocess.PIPE).communicate()[0]
         output = proc.decode('utf-8').split('\n')
  
         # State Guide:
