@@ -1,4 +1,4 @@
-# import paramiko
+import paramiko
 import json
 import time
 import subprocess
@@ -6,19 +6,24 @@ from . import app
 
 def update_printer():
     # Initialize Paramiko, get information from config file
-    # ssh = paramiko.SSHClient()
-    # ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    # ssh.connect(app.config['SSH_SERVER'], username = app.config['SSH_USERNAME'], password = app.config['SSH_PASSWORD'])
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(app.config['SSH_SERVER'], username = app.config['SSH_USERNAME'], password = app.config['SSH_PASSWORD'])
     
     # Get the initial printer data from "printers_init.json"
     with open('queue_app/static/json/printers_init.json', 'r') as json_printer:
         printer_data = json.load(json_printer)
     
     for printer in printer_data['printers']:
-        # stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
-        proc = subprocess.Popen(["rlpq", "-N", "-H", app.config['SERVER'], "-P" + printer['name']], stdout=subprocess.PIPE).communicate()[0]
-        output = proc.decode('utf-8').split('\n')
- 
+
+        if printer['method'] == 'ssh':
+            stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
+            output = stdout.readlines()
+        elif printer['method'] == 'rlpq':
+            proc = subprocess.Popen(["rlpq", "-N", "-H", app.config['SERVER'], "-P" + printer['name']], stdout=subprocess.PIPE).communicate()[0]
+            output = proc.decode('utf-8').split('\n')
+		
+
         # State Guide:
         # 1 - No Entries
         # 2 - Operating
@@ -56,8 +61,8 @@ def update_printer():
             printer['error'] = "Printer did not respond."
 
     # Command to clean some cache file that appear after running "lpq"
-    # ssh.exec_command("lpq-pqtest --kdest")  
-    # ssh.close()
+    ssh.exec_command("lpq-pqtest --kdest")  
+    ssh.close()
 
     # Update the timestamp
     printer_data['last_updated'] = time.strftime("%a, %b %d, %I:%M %p")
