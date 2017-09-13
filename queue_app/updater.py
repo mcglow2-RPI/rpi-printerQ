@@ -12,7 +12,7 @@ def update_printer():
     # ssh.connect(app.config['SSH_SERVER'], username = app.config['SSH_USERNAME'], password = app.config['SSH_PASSWORD'])
     
     # Get the initial printer data from "printers_init.json"
-    with open('queue_app/static/json/printers_init.json', 'r') as json_printer:
+    with open( BASE_PATH + 'queue_app/static/json/printers_init.json', 'r') as json_printer:
         printer_data = json.load(json_printer)
     
     for printer in printer_data['printers']:
@@ -78,7 +78,7 @@ def update_printer():
     printer_data['last_updated'] = time.strftime("%a, %b %d, %I:%M %p")
 
     # Dump all the data into a new JSON file named "printers_data.json"
-    with open('queue_app/static/json/printers_data.json', 'w') as write_printer:
+    with open(BASE_PATH +'queue_app/static/json/printers_data.json', 'w') as write_printer:
         json.dump(printer_data, write_printer, indent=4, sort_keys=True)
 
     json_printer.close()
