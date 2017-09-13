@@ -21,6 +21,7 @@ def update_printer():
             stdin, stdout, stderr = ssh.exec_command("lpq -P" + printer['name'])
             output = stdout.readlines()
         elif printer['method'] == 'rlpq':
+            server = app.config['DEFAULT_LPQ_SERVER']
             if 'server' in printer.keys():
                 if printer['server'] != '':
                     server = printer['server']
