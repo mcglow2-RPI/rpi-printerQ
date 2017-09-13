@@ -13,3 +13,5 @@ queue_app/static/json/printers_data.json
 
 config.py
 
+.idea/workspace.xml
+/.idea
