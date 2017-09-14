@@ -4,119 +4,102 @@
     [
         {
             "name": "vc6350let",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vc6350ovr",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vc7760cb",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vc7760cbg",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vc7760cz4",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vclw",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcblw",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcnolw",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcpalw",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcpap3",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcph3let",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcp7100",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcp7100g",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcpltcf",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcsoutlw",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcsoutb",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
         },
         {
             "name": "vcsoutp3",
-            "method": "ssh",
             "state": 0,
             "error": "",
             "queue": []
