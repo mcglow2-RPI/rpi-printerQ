@@ -1,16 +1,16 @@
 # rpi-printerQ
 
-A complete rewrite of TrevorNT's [RPI PrinterQueue-NG](https://github.com/TrevorNT/rpi-printqueue-ng). The old version of the printer queue had a tendency to crash once in a while and unnecessarily used a database to store printer data.
+Tool to list output of Linux rlpq command on a webpage.  Support multiple print queues on different print servers.
 
-## Changes
-* Flask instead of Django
-* Usage of ReactJS on the frontend to avoid page refreshing to re-render data
-* Data is stored in a single JSON file rather than a database
+* Uses [Flask](http://flask.pocoo.org/) Micro Framework
+* Uses ReactJS on the frontend to avoid page refreshing to re-render data
+* Queue configuration and job data is stored in JSON files rather than a database
 
 ## Getting Started
 ### Requirements
 * Python 3.x
 * Flask
+* rlpq
 
 ### Installation
 * **Recommended:** Setup a virtualenv.
@@ -22,15 +22,26 @@ A complete rewrite of TrevorNT's [RPI PrinterQueue-NG](https://github.com/Trevor
 #### Config File
 **Example:**
 ```
-SSH_SERVER = 'this-server.edu'
-SSH_USERNAME = 'anon'
-SSH_PASSWORD = 'hunter2'
+BASE_PATH='should normally be left blank, but can be set to path to app if relative links to json files dont work'
+DEFAULT_LPQ_SERVER = 'main print server to use if not specified per queue'
+```
+
+**Allow remote IPs:**
+
+By default the application binds to localhost.  To support connections from remote clients make the following change to app.py from
+```
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+to
+```
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)
 ```
 
 ## Development
 ### Dependencies
 * **Python 3.x** - For Flask
-* ~ **Paramiko** - SSH capabilities
 * ~ **APScheduler** - Calling the updater every set interval
 * ~ **Flask** - Serving webpages, running SSH commands to the printers, storing data
 * **npm** - Frontend package manager
