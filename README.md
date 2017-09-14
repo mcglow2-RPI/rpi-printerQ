@@ -19,6 +19,10 @@ Tool to list output of Linux rlpq command on a webpage.  Support multiple print 
 * Run `python app.py`.
 * Go to [http://localhost:5000/](http://localhost:5000/).
 
+**Permissions:**
+
+*The file queue_app/static/json/printers_data.json needs to be writeable by the account that python and/or your webserver is running as.
+
 #### Config File
 **Example:**
 ```
@@ -37,6 +41,19 @@ to
 ```
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
+```
+
+**Print Queues:**
+Print queues to monitor are specified in the file queue_app/static/json/printers_init.json
+
+```
+{
+    "name": "queue name",
+    "server": "optional print server hostname",
+    "state": 0,
+    "error": "",
+    "queue": []
+},
 ```
 
 ## Development
